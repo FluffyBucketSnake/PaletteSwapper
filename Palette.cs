@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using SixLabors.ImageSharp;
 
 namespace PaletteSwapper
 {
     /// <summary>
     /// Represents a collection of colors.
     /// </summary>
-    public class Palette : IEnumerable<Color>
+    public class Palette : IEnumerable<Colour>
     {
-        private Color[] _colours;
+        private Colour[] _colours;
 
         /// <summary>
         /// Creates a new palette with <paramref name="count"/> colours.
@@ -25,13 +24,13 @@ namespace PaletteSwapper
                 throw new ArgumentException(nameof(count));
             }
 
-            _colours = new Color[count];
+            _colours = new Colour[count];
         }
 
-        public Palette(params Color[] colours)
+        public Palette(params Colour[] colours)
         {
             // Copy array.
-            _colours = (Color[])colours.Clone();
+            _colours = (Colour[])colours.Clone();
         }
 
         /// <summary>
@@ -43,25 +42,25 @@ namespace PaletteSwapper
         /// Indexes each colour in this palette.
         /// </summary>
         /// <value>The colour in the specified index.</value>
-        public Color this[int index]
+        public Colour this[int index]
         {
-            get => GetColor(index);
-            set => SetColor(index, value);
+            get => GetColour(index);
+            set => SetColour(index, value);
         }
-        
-        public Color GetColor(int index)
+
+        public Colour GetColour(int index)
         {
             return _colours[index];
         }
 
-        public void SetColor(int index, Color colour)
+        public void SetColour(int index, Colour colour)
         {
             _colours[index] = colour;
         }
 
-        public IEnumerator<Color> GetEnumerator()
+        public IEnumerator<Colour> GetEnumerator()
         {
-            return (IEnumerator<Color>)_colours.GetEnumerator();
+            return (IEnumerator<Colour>)_colours.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
