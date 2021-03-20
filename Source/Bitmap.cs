@@ -46,6 +46,7 @@ namespace PaletteSwapper
             this._height = height;
 
             // Fill internal data buffer.
+            this._data = new T[_height, _width];
             for (int y = 0; y < width; y++)
             {
                 for (int x = 0; x < height; x++)
@@ -78,6 +79,7 @@ namespace PaletteSwapper
             this._height = height;
 
             // Fill internal data buffer.
+            this._data = new T[_height, _width];
             for (int y = 0; y < width; y++)
             {
                 for (int x = 0; x < height; x++)
