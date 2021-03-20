@@ -39,23 +39,29 @@ namespace PaletteSwapper
         /// <param name="tokens">An array of string, each representing a token.</param>
         public static Args Parse(int startIndex, string[] tokens)
         {
-            Args results = new Args();
+            Args results = new();
 
-            // Validate length.
-            int length = tokens.Length - startIndex;
-            if (length < 4 || length > 5)
+            // Validate startIndex and length.
+            if (startIndex < 0)
             {
-                throw new System.ArgumentException();
+                throw new System.ArgumentException("The starting index cannot be lower than 0.");
+            }
+
+            int length = tokens.Length - startIndex;
+            if (length < 4)
+            {
+                throw new System.ArgumentException("Not enough arguments.");
+            }
+            if (length > 5)
+            {
+                throw new System.ArgumentException("Too many arguments.");
             }
 
             // Parse tokens.
             int i = 0;
             results.SourcePath = tokens[startIndex + i++];
             results.PaletteTablePath = tokens[startIndex + i++];
-            if (length == 5)
-            {
-                results.SourcePaletteIndex = int.Parse(tokens[startIndex + i++]);
-            }
+            results.SourcePaletteIndex = (length == 5) ? int.Parse(tokens[startIndex + i++]) : 0;
             results.TargetPaletteIndex = int.Parse(tokens[startIndex + i++]);
             results.DestinationPath = tokens[startIndex + i++];
 
