@@ -92,8 +92,8 @@ namespace PaletteSwapper
         /// </summary>
         public T this[int x, int y]
         {
-            get => _data[y, x];
-            set => _data[y, x] = value;
+            get => GetData(x, y);
+            set => SetData(x, y, value);
         }
 
         /// <summary>
@@ -105,5 +105,26 @@ namespace PaletteSwapper
         /// Returns the height of the bitmap.
         /// </summary>
         public int Height => _height;
+
+        /// <summary>
+        /// Gets the data at the specified xy coordinates.
+        /// </summary>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        public T GetData(int x, int y)
+        {
+            return _data[y, x];
+        }
+
+        /// <summary>
+        /// Sets the data at the specified xy coordinates.
+        /// </summary>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        /// <param name="value">The new value of the data.</param>
+        public void SetData(int x, int y, T value)
+        {
+            _data[y, x] = value;
+        }
     }
 }
