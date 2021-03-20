@@ -10,9 +10,8 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/UnitTest/bin/Debug/net5.0/UnitTest.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/UnitTest",
+            "program": "${workspaceFolder}/Source/bin/Debug/net5.0/PaletteSwapper.dll",
+            "cwd": "${workspaceFolder}/Source",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
