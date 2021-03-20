@@ -79,5 +79,30 @@ namespace PaletteSwapper
             get => (byte)this._data;
             set => this._data = (this._data & 0xFFFFFF00) | (uint)value;
         }
+
+        /// <summary>
+        /// (R: 255, G: 255, B: 255, A: 255)
+        /// <summary>
+        public static readonly Colour White = new(0xFFFFFFFF);
+
+        /// <summary>
+        /// (R: 0, G: 0, B: 0, A: 255)
+        /// <summary>
+        public static readonly Colour Black = new(0x000000FF);
+
+        /// <summary>
+        /// (R: 255, G: 0, B: 0, A: 255)
+        /// <summary>
+        public static readonly Colour Red = new(0xFF0000FF);
+
+        /// <summary>
+        /// (R: 0, G: 255, B: 0, A: 255)
+        /// <summary>
+        public static readonly Colour Green = new(0x00FF00FF);
+
+        /// <summary>
+        /// (R: 0, G: 0, B: 255, A: 255)
+        /// <summary>
+        public static readonly Colour Blue = new(0x0000FFFF);
     }
 }
