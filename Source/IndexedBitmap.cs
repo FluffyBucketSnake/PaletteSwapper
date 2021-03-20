@@ -49,7 +49,7 @@ namespace PaletteSwapper
         public Palette Palette
         {
             get => this._palette;
-            set => this._palette = value ?? throw new System.ArgumentNullException();
+            set => this._palette = value ?? throw new System.ArgumentNullException(nameof(value));
         }
 
         /// <summary>

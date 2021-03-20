@@ -21,7 +21,7 @@ namespace PaletteSwapper
         {
             if (count < 0)
             {
-                throw new ArgumentException(nameof(count));
+                throw new ArgumentException("The amount of colours cannot be negative.");
             }
 
             _colours = new Colour[count];
