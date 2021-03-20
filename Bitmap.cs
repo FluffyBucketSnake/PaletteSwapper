@@ -1,30 +1,29 @@
 namespace PaletteSwapper
 {
     /// <summary>
-    /// Represents the pixel data of a bitmap image.
+    /// Represents a generic bitmap data structure. Useful for storing raw image data.
     /// </summary>
-    public class Bitmap
+    public class Bitmap<T>
     {
         // A 2D-array holding the data of each pixel. (x, y) pixel indexed as [y, x].
-        private Colour[,] _data;
+        private T[,] _data;
 
         private int _width;
 
         private int _height;
 
         /// <summary>
-        /// Creates a new <see cref="PaletteSwapper.Bitmap"/> from an already existing colour
-        /// buffer.
-        /// The colour data must be stored as a sequence of rows.
+        /// Creates a new <see cref="PaletteSwapper.Bitmap"/> from an already existing buffer.
+        /// The buffer data must be in the form of a sequence of rows.
         /// </summary>
         /// <param name="width">The width of the bitmap.</param>
         /// <param name="height">The height of the bitmap.</param>
-        /// <param name="data">The source pixel buffer from which the data will be copied.</param>
+        /// <param name="data">The source buffer from which the data will be copied.</param>
         /// <exception cref="System.ArgumentException">Thrown when 
         /// <paramref name="data"/> length is smaller than <paramref name="width"/>
         ///  * <paramref name="height"/>, or if either <paramref name="width"/> or
         /// <paramref name="height"/> are smaller or equal to zero.</exception>
-        public Bitmap(int width, int height, Colour[] data)
+        public Bitmap(int width, int height, T[] data)
         {
             // Null checking.
             if (data == null)
@@ -57,15 +56,16 @@ namespace PaletteSwapper
         }
 
         /// <summary>
-        /// Creates a new <see cref="PaletteSwapper.Bitmap"/> filled with a single colour.
+        /// Creates a new <see cref="PaletteSwapper.Bitmap"/> filled with copies of a single
+        /// value.
         /// </summary>
         /// <param name="width">The width of the bitmap.</param>
         /// <param name="height">The height of the bitmap.</param>
-        /// <param name="colour">The fill colour.</param>
+        /// <param name="value">The value used to fill the buffer.</param>
         /// <exception cref="System.ArgumentException">Thrown when either 
         /// <paramref name="width"/> or <paramref name="height"/> are smaller or equal 
         /// to zero.</exception>
-        public Bitmap(int width, int height, Colour colour)
+        public Bitmap(int width, int height, T value)
         {
             // Parameter validation.
             if (width <= 0 | height <= 0)
@@ -82,39 +82,28 @@ namespace PaletteSwapper
             {
                 for (int x = 0; x < height; x++)
                 {
-                    this._data[y, x] = colour;
+                    this._data[y, x] = value;
                 }
             }
         }
 
         /// <summary>
-        /// Gets or sets the colour at the pixel in the specified xy coordinates of this bitmap.
+        /// Gets or sets the data at the specified xy coordinates of this bitmap.
         /// </summary>
-        public Colour this[int x, int y]
+        public T this[int x, int y]
         {
-            get => GetPixel(x, y);
-            set => SetPixel(x, y, value);
+            get => _data[y, x];
+            set => _data[y, x] = value;
         }
 
         /// <summary>
-        /// Returns the colour at the pixel in the specified xy coordinates of this bitmap.
+        /// Returns the width of the bitmap.
         /// </summary>
-        /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordinate.</param>
-        public Colour GetPixel(int x, int y)
-        {
-            return _data[y, x];
-        }
+        public int Width => _width;
 
         /// <summary>
-        /// Sets the colour at the pixel in the specified xy coordinates of this bitmap.
+        /// Returns the height of the bitmap.
         /// </summary>
-        /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordinate.</param>
-        /// <param name="colour">The colour to set.</param>
-        public void SetPixel(int x, int y, Colour colour)
-        {
-            _data[y, x] = colour;
-        }
+        public int Height => _height;
     }
 }
