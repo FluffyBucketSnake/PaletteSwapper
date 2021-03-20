@@ -94,8 +94,8 @@ namespace PaletteSwapper
         /// </summary>
         public T this[int x, int y]
         {
-            get => GetData(x, y);
-            set => SetData(x, y, value);
+            get => GetValue(x, y);
+            set => SetValue(x, y, value);
         }
 
         /// <summary>
@@ -109,24 +109,42 @@ namespace PaletteSwapper
         public int Height => _height;
 
         /// <summary>
-        /// Gets the data at the specified xy coordinates.
+        /// Gets the value at the specified xy coordinates.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
-        public T GetData(int x, int y)
+        public T GetValue(int x, int y)
         {
             return _data[y, x];
         }
 
         /// <summary>
-        /// Sets the data at the specified xy coordinates.
+        /// Sets the value at the specified xy coordinates.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
-        /// <param name="value">The new value of the data.</param>
-        public void SetData(int x, int y, T value)
+        /// <param name="value">The new value.</param>
+        public void SetValue(int x, int y, T value)
         {
             _data[y, x] = value;
+        }
+
+        /// <summary>
+        /// Returns a copy of the internal bitmap data. The bitmap data is stored as an
+        /// sequence of scanlines.
+        /// </summary>
+        public T[] GetData()
+        {
+            var data = new T[_width * _height];
+            for (int y = 0; y < _height; y++)
+            {
+                for (int x = 0; x < _width; x++)
+                {
+                    data[(y * _width) + x] = GetValue(x, y);
+                }
+            }
+
+            return data;
         }
     }
 }
