@@ -9,7 +9,7 @@ namespace PaletteSwapper
     public class ImageBitmap : Bitmap<Colour>
     {
         /// <summary>
-        /// Creates a new <see cref="PaletteSwapper.Bitmap"/> from an already existing buffer.
+        /// Creates a new <see cref="PaletteSwapper.ImageBitmap"/> from an already existing buffer.
         /// The buffer data must be in the form of a sequence of rows.
         /// </summary>
         /// <param name="width">The width of the bitmap.</param>
@@ -24,7 +24,7 @@ namespace PaletteSwapper
         }
 
         /// <summary>
-        /// Creates a new <see cref="PaletteSwapper.Bitmap"/> filled with copies of a single
+        /// Creates a new <see cref="PaletteSwapper.ImageBitmap"/> filled with copies of a single
         /// value.
         /// </summary>
         /// <param name="width">The width of the bitmap.</param>
