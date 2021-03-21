@@ -104,5 +104,30 @@ namespace PaletteSwapper
         /// (R: 0, G: 0, B: 255, A: 255)
         /// <summary>
         public static readonly Colour Blue = new(0x0000FFFF);
+
+        public static bool operator==(Colour a, Colour b)
+        {
+            return a._data == b._data;
+        }
+
+        public static bool operator!=(Colour a, Colour b)
+        {
+            return a._data != b._data;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Colour other)
+            {
+                return this == other;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this._data.GetHashCode();
+        }
     }
 }
