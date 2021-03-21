@@ -18,7 +18,7 @@ namespace PaletteSwapper.UnitTest
         public void Load()
         {
             {
-                ImageBitmap bitmap = ImageBitmap.FromFile("bitmap0.png");
+                ImageBitmap bitmap = ImageBitmap.Load("bitmap0.png");
                 CollectionAssert.AreEqual(bitmap0Data, bitmap.GetData());
             }
         }

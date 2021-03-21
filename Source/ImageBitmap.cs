@@ -42,7 +42,7 @@ namespace PaletteSwapper
         /// </summary>
         /// <param name="path">The file path to the image file.</param>
         /// <returns>Returns the loaded bitmap data.</returns>
-        public static ImageBitmap FromFile(string path)
+        public static ImageBitmap Load(string path)
         {
             int width, height;
             Colour[] data;
