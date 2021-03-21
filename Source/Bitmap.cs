@@ -47,9 +47,9 @@ namespace PaletteSwapper
 
             // Fill internal data buffer.
             this._data = new T[_height, _width];
-            for (int y = 0; y < width; y++)
+            for (int y = 0; y < height; y++)
             {
-                for (int x = 0; x < height; x++)
+                for (int x = 0; x < width; x++)
                 {
                     this._data[y, x] = data[(y * width) + x];
                 }
