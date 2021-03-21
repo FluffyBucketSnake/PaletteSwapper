@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <None Update="bitmap0.png" CopyToOutputDirectory="PreserveNewest"/>
+    <None Update="bitmap1.png" CopyToOutputDirectory="PreserveNewest"/>
   </ItemGroup>
 
 </Project>
