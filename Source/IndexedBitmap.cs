@@ -53,12 +53,12 @@ namespace PaletteSwapper
         }
 
         /// <summary>
-        /// Gets the indexed data at the specified xy coordinates.
+        /// Gets the dereferenced value at the specified xy coordinates.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
-        /// <returns>The data represented by the index.</returns>
-        public Colour GetIndexedData(int x, int y)
+        /// <returns>The unindexed value located at the coordinates.</returns>
+        public Colour GetDerefValue(int x, int y)
         {
             return this._palette[(int)this[x, y]];
         }
