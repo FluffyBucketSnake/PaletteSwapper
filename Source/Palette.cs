@@ -68,6 +68,32 @@ namespace PaletteSwapper
             return _colours.GetEnumerator();
         }
 
+        public override bool Equals(object obj)
+        {
+            // Chech if obj is a Palette instance.
+            if (obj is Palette other)
+            {
+                // Check if they have the same amount of colours.
+                if (this.Count != other.Count)
+                {
+                    return false;
+                }
+                
+                // Compare each colour from both palettes. Order matters.
+                for (int i = 0; i < this.Count; i++)
+                {
+                    if (this._colours[i] != other._colours[i])
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Loads a set of palettes from a file. Each column is a distinct palette.
         /// </summary>
