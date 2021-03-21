@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PaletteSwapper
 {
     /// <summary>
@@ -61,6 +63,66 @@ namespace PaletteSwapper
         public Colour GetDerefValue(int x, int y)
         {
             return this._palette[(int)this[x, y]];
+        }
+
+        /// <summary>
+        /// Creates a copy of this bitmap with unindexed values.
+        /// </summary>
+        public ImageBitmap Dereference()
+        {
+            int width = this.Width;
+            int height = this.Height;
+            var data = new Colour[width * height];
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    data[(y * width) + x] = this.GetDerefValue(x, y);
+                }
+            }
+
+            return new ImageBitmap(width, height, data);
+        }
+
+        public static IndexedBitmap FromBitmap(ImageBitmap bitmap, Palette palette)
+        {
+            // Null-check.
+            if (bitmap == null)
+            {
+                throw new System.ArgumentNullException(nameof(bitmap));
+            }
+            if (palette == null)
+            {
+                throw new System.ArgumentNullException(nameof(palette));
+            }
+
+            // Initialize data array.
+            int width = bitmap.Width;
+            int height = bitmap.Height;
+            var data = new int[width * height];
+
+            // Create lookup table for palette colours. 
+            // Prioritize colours with lower indexes.
+            var table = new Dictionary<Colour, int>();
+            for (int i = palette.Count - 1; i >= 0; i--)
+            {
+                Colour colour = palette[i];
+                if (!table.ContainsKey(colour))
+                {
+                    table.Add(colour, i);
+                }
+            }
+
+            // Fill data array with indexes from the dictionary.
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    data[(y * width) + x] = table[bitmap.GetValue(x, y)];
+                }
+            }
+
+            return new IndexedBitmap(width, height, palette, data);
         }
     }
 }
