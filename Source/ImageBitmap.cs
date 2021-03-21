@@ -68,5 +68,22 @@ namespace PaletteSwapper
 
             return new ImageBitmap(width, height, data);
         }
+
+        public void Save(string path)
+        {
+            // Convert Colour array into a Rgba32 array.
+            Colour[] srcData = this.GetData();
+            Rgba32[] destData = new Rgba32[Width * Height];
+            for (int i = 0; i < srcData.Length; i++)
+            {
+                Colour src = srcData[i];
+                Rgba32 dest = new(src.R, src.G, src.B, src.A);
+                destData[i] = dest;
+            }
+            
+            // Create a new ImageSharp Image and save it.
+            var image = Image.LoadPixelData(destData, Width, Height);
+            image.Save(path);
+        }
     }
 }
