@@ -67,5 +67,31 @@ namespace PaletteSwapper
         {
             return _colours.GetEnumerator();
         }
+
+        /// <summary>
+        /// Loads a set of palettes from a file. Each column is a distinct palette.
+        /// </summary>
+        /// <param name="path">The file path to the palette file.</param>
+        /// <returns>An array of palettes.</returns>
+        public static Palette[] Load(string path)
+        {
+            var source = ImageBitmap.Load(path);
+
+            int pcount = source.Width;
+            int ccount = source.Height;
+
+            var palettes = new Palette[pcount];
+            for (int x = 0; x < pcount; x++)
+            {
+                Palette palette = new(ccount);
+                for (int y = 0; y < ccount; y++)
+                {
+                    palette[y] = source[x, y];
+                }
+                palettes[x] = palette;
+            }
+
+            return palettes;
+        }
     }
 }
