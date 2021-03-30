@@ -119,5 +119,15 @@ namespace PaletteSwapper
 
             return palettes;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
